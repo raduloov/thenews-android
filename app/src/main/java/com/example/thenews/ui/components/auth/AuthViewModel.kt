@@ -1,4 +1,4 @@
-package com.example.thenews.login
+package com.example.thenews.ui.components.auth
 
 import android.content.Context
 import android.widget.Toast
@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.thenews.repository.AuthRepository
 import kotlinx.coroutines.launch
 
-class LoginViewModel(
+class AuthViewModel(
     private val repository: AuthRepository = AuthRepository()
 ) : ViewModel() {
     val currentUser = repository.currentUser
@@ -18,37 +18,37 @@ class LoginViewModel(
     val hasUser: Boolean
         get() = repository.hasUser()
 
-    var loginUiState by mutableStateOf(LoginUiState())
+    var authUiState by mutableStateOf(AuthUiState())
         private set
 
     fun onUsernameChange(username: String) {
-        loginUiState = loginUiState.copy(username = username)
+        authUiState = authUiState.copy(username = username)
     }
 
     fun onPasswordChange(password: String) {
-        loginUiState = loginUiState.copy(password = password)
+        authUiState = authUiState.copy(password = password)
     }
 
     fun onUsernameChangeSignUp(username: String) {
-        loginUiState = loginUiState.copy(usernameSignUp = username)
+        authUiState = authUiState.copy(usernameSignUp = username)
     }
 
     fun onPasswordChangeSignUp(password: String) {
-        loginUiState = loginUiState.copy(passwordSignUp = password)
+        authUiState = authUiState.copy(passwordSignUp = password)
     }
 
     fun onConfirmPasswordChange(password: String) {
-        loginUiState = loginUiState.copy(confirmPasswordSignUp = password)
+        authUiState = authUiState.copy(confirmPasswordSignUp = password)
     }
 
     private fun validateLoginForm(): Boolean {
-        return loginUiState.username.isNotBlank() && loginUiState.password.isNotBlank()
+        return authUiState.username.isNotBlank() && authUiState.password.isNotBlank()
     }
 
     private fun validateSignUpForm(): Boolean {
-        return loginUiState.usernameSignUp.isNotBlank() &&
-                loginUiState.passwordSignUp.isNotBlank() &&
-                loginUiState.confirmPasswordSignUp.isNotBlank()
+        return authUiState.usernameSignUp.isNotBlank() &&
+                authUiState.passwordSignUp.isNotBlank() &&
+                authUiState.confirmPasswordSignUp.isNotBlank()
     }
 
     fun createUser(context: Context) = viewModelScope.launch {
@@ -57,30 +57,30 @@ class LoginViewModel(
                 throw java.lang.IllegalArgumentException("Email and password can not be empty.")
             }
 
-            loginUiState = loginUiState.copy(isLoading = true)
-            if (loginUiState.passwordSignUp != loginUiState.confirmPasswordSignUp) {
+            authUiState = authUiState.copy(isLoading = true)
+            if (authUiState.passwordSignUp != authUiState.confirmPasswordSignUp) {
                 throw java.lang.IllegalArgumentException("Passwords do not match.")
             }
 
-            loginUiState = loginUiState.copy(signUpError = null)
+            authUiState = authUiState.copy(signUpError = null)
 
             repository.createUser(
-                loginUiState.usernameSignUp,
-                loginUiState.passwordSignUp
+                authUiState.usernameSignUp,
+                authUiState.passwordSignUp
             ) { isSuccessful ->
                 if (isSuccessful) {
                     Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
-                    loginUiState = loginUiState.copy(isSuccessLogin = true)
+                    authUiState = authUiState.copy(isSuccessLogin = true)
                 } else {
                     Toast.makeText(context, "success failed", Toast.LENGTH_SHORT).show()
-                    loginUiState = loginUiState.copy(isSuccessLogin = false)
+                    authUiState = authUiState.copy(isSuccessLogin = false)
                 }
             }
         } catch (e: Exception) {
-            loginUiState = loginUiState.copy(signUpError = e.localizedMessage)
+            authUiState = authUiState.copy(signUpError = e.localizedMessage)
             e.printStackTrace()
         } finally {
-            loginUiState = loginUiState.copy(isLoading = false)
+            authUiState = authUiState.copy(isLoading = false)
         }
     }
 
@@ -90,31 +90,31 @@ class LoginViewModel(
                 throw java.lang.IllegalArgumentException("Email and password can not be empty.")
             }
 
-            loginUiState = loginUiState.copy(isLoading = true)
-            loginUiState = loginUiState.copy(loginError = null)
+            authUiState = authUiState.copy(isLoading = true)
+            authUiState = authUiState.copy(loginError = null)
 
             repository.loginUser(
-                loginUiState.username,
-                loginUiState.password
+                authUiState.username,
+                authUiState.password
             ) { isSuccessful ->
                 if (isSuccessful) {
                     Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
-                    loginUiState = loginUiState.copy(isSuccessLogin = true)
+                    authUiState = authUiState.copy(isSuccessLogin = true)
                 } else {
                     Toast.makeText(context, "success failed", Toast.LENGTH_SHORT).show()
-                    loginUiState = loginUiState.copy(isSuccessLogin = false)
+                    authUiState = authUiState.copy(isSuccessLogin = false)
                 }
             }
         } catch (e: Exception) {
-            loginUiState = loginUiState.copy(loginError = e.localizedMessage)
+            authUiState = authUiState.copy(loginError = e.localizedMessage)
             e.printStackTrace()
         } finally {
-            loginUiState = loginUiState.copy(isLoading = false)
+            authUiState = authUiState.copy(isLoading = false)
         }
     }
 }
 
-data class LoginUiState(
+data class AuthUiState(
     val username: String = "",
     val password: String = "",
     val usernameSignUp: String = "",

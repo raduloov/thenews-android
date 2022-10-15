@@ -1,5 +1,6 @@
 package com.example.thenews.repository
 
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -18,7 +19,7 @@ class AuthRepository {
         email: String,
         password: String,
         onComplete: (Boolean) -> Unit
-    ) = withContext(Dispatchers.IO) {
+    ): AuthResult = withContext(Dispatchers.IO) {
         Firebase.auth
             .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -34,7 +35,7 @@ class AuthRepository {
         email: String,
         password: String,
         onComplete: (Boolean) -> Unit
-    ) = withContext(Dispatchers.IO) {
+    ): AuthResult = withContext(Dispatchers.IO) {
         Firebase.auth
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
