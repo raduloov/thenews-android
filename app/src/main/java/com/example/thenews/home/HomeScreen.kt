@@ -14,7 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.thenews.navigation.ROUTE_HOME
 import com.example.thenews.navigation.ROUTE_LOGIN
-import com.example.thenews.presentation.auth.AuthViewModel
+import com.example.thenews.ui.auth.AuthViewModel
 import com.example.thenews.ui.theme.TheNewsTheme
 
 @Composable
@@ -117,24 +117,24 @@ fun UserInfo(viewModel: AuthViewModel?, navController: NavController, name: Stri
     }
 }
 
-@Preview(
-    showBackground = true,
-//    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Composable
-fun HomeScreenPreviewLight() {
-    TheNewsTheme {
-        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
-    }
-}
-
-@Preview(
-    showBackground = true,
-//    uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-@Composable
-fun HomeScreenPreviewDark() {
-    TheNewsTheme {
-        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
-    }
-}
+//@Preview(
+//    showBackground = true,
+////    uiMode = Configuration.UI_MODE_NIGHT_NO
+//)
+//@Composable
+//fun HomeScreenPreviewLight() {
+//    TheNewsTheme {
+//        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
+//    }
+//}
+//
+//@Preview(
+//    showBackground = true,
+////    uiMode = Configuration.UI_MODE_NIGHT_NO
+//)
+//@Composable
+//fun HomeScreenPreviewDark() {
+//    TheNewsTheme {
+//        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
+//    }
+//}

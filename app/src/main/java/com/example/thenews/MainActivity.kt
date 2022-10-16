@@ -5,33 +5,36 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.Scaffold
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
-import androidx.compose.runtime.remember
+import androidx.compose.material.rememberScaffoldState
 import com.example.thenews.navigation.AppNavHost
-import com.example.thenews.presentation.auth.AuthViewModel
+import com.example.thenews.ui.auth.AuthViewModel
 import com.example.thenews.ui.theme.TheNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var application: BaseApplication
     private val authViewModel: AuthViewModel by viewModels()
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val snackbarHostState = remember { SnackbarHostState() }
-            Scaffold(
-                snackbarHost = { SnackbarHost(snackbarHostState) },
-                content = {
-                    TheNewsTheme {
-                        AppNavHost(authViewModel)
-                    }
-                }
-            )
+
+            val scaffoldState = rememberScaffoldState()
+
+            TheNewsTheme(
+                darkTheme = application.isDark.value,
+                scaffoldState = scaffoldState
+            ) {
+                AppNavHost(
+                    viewModel = authViewModel,
+                    darkTheme = application.isDark.value
+                )
+            }
         }
     }
 }

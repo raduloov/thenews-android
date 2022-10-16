@@ -1,5 +1,7 @@
-package com.example.thenews.presentation.auth
+package com.example.thenews.ui.auth
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thenews.data.Resource
@@ -15,6 +17,8 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
+
+    var authError: MutableState<String?> = mutableStateOf(null)
 
     private val _loginFlow = MutableStateFlow<Resource<FirebaseUser>?>(null)
     val loginFlow: StateFlow<Resource<FirebaseUser>?> = _loginFlow

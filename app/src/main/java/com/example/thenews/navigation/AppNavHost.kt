@@ -2,24 +2,23 @@ package com.example.thenews.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.thenews.home.HomeScreen
-import com.example.thenews.presentation.auth.AuthViewModel
-import com.example.thenews.presentation.auth.LoginScreen
-import com.example.thenews.presentation.auth.SignUpScreen
-import dagger.hilt.android.internal.lifecycle.HiltViewModelFactory
+import com.example.thenews.ui.auth.AuthViewModel
+import com.example.thenews.ui.auth.LoginScreen
+import com.example.thenews.ui.auth.SignUpScreen
 
 @Composable
 fun AppNavHost(
     viewModel: AuthViewModel,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_LOGIN
+    startDestination: String = ROUTE_LOGIN,
+    darkTheme: Boolean
 ) {
     NavHost(
         modifier = modifier,
@@ -27,11 +26,10 @@ fun AppNavHost(
         startDestination = startDestination
     ) {
         composable(ROUTE_LOGIN) {
-            val authViewModel = hiltViewModel<AuthViewModel>()
-            LoginScreen(authViewModel, navController)
+            LoginScreen(viewModel, navController, darkTheme)
         }
         composable(ROUTE_SIGNUP) {
-            SignUpScreen(viewModel, navController)
+            SignUpScreen(viewModel, navController, darkTheme)
         }
         composable(ROUTE_HOME) {
             HomeScreen(viewModel, navController)
