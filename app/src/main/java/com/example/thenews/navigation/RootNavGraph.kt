@@ -11,7 +11,6 @@ import com.example.thenews.ui.auth.*
 
 @Composable
 fun RootNavGraph(
-    authViewModel: AuthViewModel,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = Graph.AUTH,
@@ -23,8 +22,8 @@ fun RootNavGraph(
         startDestination = startDestination,
         route = Graph.ROOT
     ) {
-        authNavGraph(navController, authViewModel)
-        loggedInNavGraph(navController, authViewModel)
+        authNavGraph(navController)
+        loggedInNavGraph(navController)
     }
 }
 

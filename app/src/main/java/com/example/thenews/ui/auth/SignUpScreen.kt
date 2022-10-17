@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.thenews.data.Resource
 import com.example.thenews.navigation.*
@@ -28,7 +29,6 @@ import com.example.thenews.ui.theme.Grey500
 
 @Composable
 fun SignUpScreen(
-    viewModel: AuthViewModel?,
     navController: NavController,
     isDark: Boolean
 ) {
@@ -37,7 +37,8 @@ fun SignUpScreen(
     var password by remember { mutableStateOf("") }
     var authError by remember { mutableStateOf("") }
 
-    val authResource = viewModel?.signUpFlow?.collectAsState()
+    val viewModel: AuthViewModel = hiltViewModel()
+    val authResource = viewModel.signUpFlow.collectAsState()
 
     Column(
         modifier = Modifier

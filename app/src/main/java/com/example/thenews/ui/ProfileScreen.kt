@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.thenews.navigation.Graph
@@ -15,10 +16,11 @@ import com.example.thenews.ui.auth.AuthViewModel
 
 @Composable
 fun ProfileScreen(
-    viewModel: AuthViewModel?,
     navController: NavHostController
 ) {
-    viewModel?.currentUser?.let {
+    val viewModel: AuthViewModel = hiltViewModel()
+
+    viewModel.currentUser?.let {
         UserInfo(
             viewModel = viewModel,
             navController = navController,

@@ -10,7 +10,7 @@ import com.example.thenews.ui.auth.AuthViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen(authViewModel: AuthViewModel) {
+fun MainScreen() {
 
     val bottomBarNavController = rememberNavController()
     
@@ -19,6 +19,6 @@ fun MainScreen(authViewModel: AuthViewModel) {
             BottomNavBar(bottomBarNavController)
         }
     ) {
-        BottomNavGraph(bottomBarNavController, authViewModel)
+        BottomNavGraph(bottomBarNavController)
     }
 }

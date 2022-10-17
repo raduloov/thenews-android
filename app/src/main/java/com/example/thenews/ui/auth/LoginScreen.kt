@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.thenews.data.Resource
 import com.example.thenews.navigation.AuthScreen
@@ -29,15 +30,16 @@ import com.example.thenews.ui.theme.Grey500
 
 @Composable
 fun LoginScreen(
-    viewModel: AuthViewModel?,
     navController: NavController,
     isDark: Boolean
 ) {
+    val viewModel: AuthViewModel = hiltViewModel()
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var authError by remember { mutableStateOf("") }
 
-    val authResource = viewModel?.loginFlow?.collectAsState()
+    val authResource = viewModel.loginFlow.collectAsState()
 
     Column(
         modifier = Modifier

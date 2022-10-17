@@ -16,20 +16,19 @@ import com.example.thenews.ui.auth.AuthViewModel
 @Composable
 fun BottomNavGraph(
     navController: NavHostController,
-    authViewModel: AuthViewModel
 ) {
     NavHost(
         navController = navController,
         startDestination = BottomBarScreens.Home.route
     ) {
         composable(route = BottomBarScreens.Home.route) {
-            HomeScreen(authViewModel, navController)
+            HomeScreen(navController)
         }
         composable(route = BottomBarScreens.Settings.route) {
-            HomeScreen(authViewModel, navController)
+            HomeScreen(navController)
         }
         composable(route = BottomBarScreens.Profile.route) {
-            ProfileScreen(authViewModel, navController)
+            ProfileScreen(navController)
         }
     }
 }
