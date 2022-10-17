@@ -38,7 +38,7 @@ fun LogoGradient(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 50.dp, bottom = 100.dp)
+            .padding(top = 50.dp, bottom = 50.dp)
     ) {
         Row {
             Text(

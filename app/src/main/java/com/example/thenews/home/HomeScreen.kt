@@ -5,27 +5,40 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.thenews.navigation.ROUTE_HOME
-import com.example.thenews.navigation.ROUTE_LOGIN
+import com.example.thenews.navigation.AuthScreen
+import com.example.thenews.navigation.BottomBarScreens
+import com.example.thenews.navigation.Graph
 import com.example.thenews.ui.auth.AuthViewModel
-import com.example.thenews.ui.theme.TheNewsTheme
 
 @Composable
-fun HomeScreen(viewModel: AuthViewModel?, navController: NavHostController) {
+fun HomeScreen(
+    viewModel: AuthViewModel?,
+    navController: NavHostController
+) {
     viewModel?.currentUser?.let {
-        UserInfo(viewModel = viewModel, navController = navController, name = it.displayName.toString(), email = it.email.toString())
+        UserInfo(
+            viewModel = viewModel,
+            navController = navController,
+            name = it.displayName.toString(),
+            email = it.email.toString()
+        )
     }
 }
 
 @Composable
-fun UserInfo(viewModel: AuthViewModel?, navController: NavController, name: String, email: String) {
+fun UserInfo(
+    viewModel: AuthViewModel?,
+    navController: NavController,
+    name: String,
+    email: String
+) {
 
     Column(
         modifier = Modifier
@@ -102,10 +115,10 @@ fun UserInfo(viewModel: AuthViewModel?, navController: NavController, name: Stri
 
             Button(
                 onClick = {
-                    viewModel?.logoutUser()
-                    navController.navigate(ROUTE_LOGIN) {
-                        popUpTo(ROUTE_HOME) { inclusive = true }
+                    navController.navigate(Graph.AUTH) {
+                        popUpTo(Graph.ROOT) { inclusive = true }
                     }
+                    viewModel?.logoutUser()
                 },
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -117,24 +130,3 @@ fun UserInfo(viewModel: AuthViewModel?, navController: NavController, name: Stri
     }
 }
 
-//@Preview(
-//    showBackground = true,
-////    uiMode = Configuration.UI_MODE_NIGHT_NO
-//)
-//@Composable
-//fun HomeScreenPreviewLight() {
-//    TheNewsTheme {
-//        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
-//    }
-//}
-//
-//@Preview(
-//    showBackground = true,
-////    uiMode = Configuration.UI_MODE_NIGHT_NO
-//)
-//@Composable
-//fun HomeScreenPreviewDark() {
-//    TheNewsTheme {
-//        UserInfo(null, rememberNavController(), "Belal Khan", "probelalkhan@gmail.com")
-//    }
-//}

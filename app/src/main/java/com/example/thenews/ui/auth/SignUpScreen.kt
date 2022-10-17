@@ -2,6 +2,7 @@ package com.example.thenews.ui.auth
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -19,9 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.thenews.data.Resource
-import com.example.thenews.navigation.ROUTE_HOME
-import com.example.thenews.navigation.ROUTE_LOGIN
-import com.example.thenews.navigation.ROUTE_SIGNUP
+import com.example.thenews.navigation.*
 import com.example.thenews.ui.auth.util.getAuthErrorMessage
 import com.example.thenews.ui.components.CircularIndeterminateProgressBar
 import com.example.thenews.ui.components.LogoGradient
@@ -123,6 +122,9 @@ fun SignUpScreen(
                         autoCorrect = false,
                         keyboardType = KeyboardType.Password,
                         imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { viewModel?.signUpUser(name, email, password) }
                     )
                 )
             }
@@ -153,8 +155,8 @@ fun SignUpScreen(
                     modifier = Modifier
                         .padding(10.dp)
                         .clickable {
-                            navController.navigate(ROUTE_LOGIN) {
-                                popUpTo(ROUTE_SIGNUP) { inclusive = true }
+                            navController.navigate(AuthScreen.Login.route) {
+                                popUpTo(AuthScreen.SignUp.route) { inclusive = true }
                             }
                         },
                     text = "Sign in",
@@ -180,8 +182,8 @@ fun SignUpScreen(
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_HOME) {
-                            popUpTo(ROUTE_SIGNUP) { inclusive = true }
+                        navController.navigate(Graph.LOGGED_IN) {
+                            popUpTo(Graph.AUTH) { inclusive = true }
                         }
                     }
                 }

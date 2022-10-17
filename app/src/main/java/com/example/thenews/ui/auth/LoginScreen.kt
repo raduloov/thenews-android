@@ -1,15 +1,14 @@
 package com.example.thenews.ui.auth
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -21,9 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.thenews.data.Resource
-import com.example.thenews.navigation.ROUTE_HOME
-import com.example.thenews.navigation.ROUTE_LOGIN
-import com.example.thenews.navigation.ROUTE_SIGNUP
+import com.example.thenews.navigation.AuthScreen
+import com.example.thenews.navigation.Graph
 import com.example.thenews.ui.auth.util.getAuthErrorMessage
 import com.example.thenews.ui.components.CircularIndeterminateProgressBar
 import com.example.thenews.ui.components.LogoGradient
@@ -107,6 +105,9 @@ fun LoginScreen(
                         autoCorrect = false,
                         keyboardType = KeyboardType.Password,
                         imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { viewModel?.loginUser(email, password) }
                     )
                 )
             }
@@ -137,8 +138,8 @@ fun LoginScreen(
                     modifier = Modifier
                         .padding(10.dp)
                         .clickable {
-                            navController.navigate(ROUTE_SIGNUP) {
-                                popUpTo(ROUTE_LOGIN) { inclusive = true }
+                            navController.navigate(AuthScreen.SignUp.route) {
+                                popUpTo(AuthScreen.Login.route) { inclusive = true }
                             }
                         },
                     text = "Sign up",
@@ -165,8 +166,8 @@ fun LoginScreen(
             }
             is Resource.Success -> {
                 LaunchedEffect(Unit) {
-                    navController.navigate(ROUTE_HOME) {
-                        popUpTo(ROUTE_LOGIN) { inclusive = true }
+                    navController.navigate(Graph.LOGGED_IN) {
+                        popUpTo(Graph.AUTH) { inclusive = true }
                     }
                 }
             }

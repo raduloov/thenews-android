@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.rememberScaffoldState
-import com.example.thenews.navigation.AppNavHost
+import com.example.thenews.navigation.RootNavGraph
 import com.example.thenews.ui.auth.AuthViewModel
 import com.example.thenews.ui.theme.TheNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
                 darkTheme = application.isDark.value,
                 scaffoldState = scaffoldState
             ) {
-                AppNavHost(
-                    viewModel = authViewModel,
+                RootNavGraph(
+                    authViewModel = authViewModel,
                     darkTheme = application.isDark.value
                 )
             }
