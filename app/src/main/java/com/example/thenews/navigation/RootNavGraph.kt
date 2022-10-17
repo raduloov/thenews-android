@@ -24,7 +24,7 @@ fun RootNavGraph(
         route = Graph.ROOT
     ) {
         authNavGraph(navController, authViewModel)
-        homeNavGraph(navController, authViewModel)
+        loggedInNavGraph(navController, authViewModel)
     }
 }
 
