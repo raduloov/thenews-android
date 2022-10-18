@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.thenews.ui.HomeScreen
-import com.example.thenews.ui.ProfileScreen
+import com.example.thenews.ui.screens.feed.FeedScreen
+import com.example.thenews.ui.screens.profile.ProfileScreen
 
 @Composable
 fun BottomNavGraph(
@@ -20,10 +20,10 @@ fun BottomNavGraph(
         startDestination = BottomBarScreens.Feed.route
     ) {
         composable(route = BottomBarScreens.Feed.route) {
-            HomeScreen(navController)
+            FeedScreen(navController)
         }
         composable(route = BottomBarScreens.Discover.route) {
-            HomeScreen(navController)
+            FeedScreen(navController)
         }
         composable(route = BottomBarScreens.Profile.route) {
             ProfileScreen(navController)

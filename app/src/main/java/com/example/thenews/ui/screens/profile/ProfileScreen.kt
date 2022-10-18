@@ -1,4 +1,4 @@
-package com.example.thenews.ui
+package com.example.thenews.ui.screens.profile
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -22,7 +22,7 @@ fun ProfileScreen(
 
     viewModel.currentUser?.let {
         UserInfo(
-            viewModel = viewModel,
+            onLogout = viewModel::logoutUser,
             navController = navController,
             name = it.displayName.toString(),
             email = it.email.toString()
@@ -32,7 +32,7 @@ fun ProfileScreen(
 
 @Composable
 fun UserInfo(
-    viewModel: AuthViewModel?,
+    onLogout: () -> Unit,
     navController: NavController,
     name: String,
     email: String
@@ -113,10 +113,10 @@ fun UserInfo(
 
             Button(
                 onClick = {
-                    viewModel?.logoutUser()
-                    navController.navigate(Graph.AUTH) {
-                        popUpTo(Graph.ROOT) { inclusive = true }
-                    }
+                    onLogout()
+//                    navController.navigate(Graph.AUTH) {
+//                        popUpTo(Graph.ROOT) { inclusive = true }
+//                    }
                 },
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)

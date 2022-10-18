@@ -14,29 +14,25 @@ import com.example.thenews.ui.theme.White
 
 @Composable
 fun CircularIndeterminateProgressBar(
-    isDisplayed: Boolean,
     verticalBias: Float
 ) {
-    if (isDisplayed) {
-        ConstraintLayout(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0x68000000))
-        ) {
-            val (progressBar) = createRefs()
-            val topBias = createGuidelineFromTop(verticalBias)
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0x68000000))
+    ) {
+        val (progressBar) = createRefs()
+        val topBias = createGuidelineFromTop(verticalBias)
 
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .width(70.dp)
-                    .height(70.dp)
-                    .constrainAs(progressBar) {
-                        top.linkTo(topBias)
-                        end.linkTo(parent.end)
-                        start.linkTo(parent.start)
-                    },
-                color = White
-            )
-        }
+        CircularProgressIndicator(
+            modifier = Modifier
+                .width(70.dp)
+                .height(70.dp)
+                .constrainAs(progressBar) {
+                    top.linkTo(topBias)
+                    end.linkTo(parent.end)
+                    start.linkTo(parent.start) },
+            color = White
+        )
     }
 }

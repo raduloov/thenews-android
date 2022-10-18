@@ -1,4 +1,4 @@
-package com.example.thenews.constants
+package com.example.thenews.utils
 
 const val TAG = "AppDebug"
 const val API_KEY = "f_TDO8lO7PMMIxT3hNmMYrgLHjUfGKRZp_MO94Zemug"

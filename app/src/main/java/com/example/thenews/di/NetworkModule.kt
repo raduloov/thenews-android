@@ -1,8 +1,9 @@
 package com.example.thenews.di
 
-import com.example.thenews.constants.BASE_URL
 import com.example.thenews.network.NewsService
 import com.example.thenews.network.model.ArticleDtoMapper
+import com.example.thenews.utils.API_KEY
+import com.example.thenews.utils.BASE_URL
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -37,6 +38,6 @@ object NetworkModule {
     @Provides
     @Named("auth_token")
     fun provideAuthToken(): String {
-        return "Token 9c8b06d329136da358c2d00e76946b0111ce2c48"
+        return API_KEY
     }
 }

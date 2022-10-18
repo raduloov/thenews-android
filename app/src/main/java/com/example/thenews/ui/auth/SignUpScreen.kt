@@ -125,7 +125,7 @@ fun SignUpScreen(
                         imeAction = ImeAction.Done
                     ),
                     keyboardActions = KeyboardActions(
-                        onDone = { viewModel?.signUpUser(name, email, password) }
+                        onDone = { viewModel.signUpUser(name, email, password) }
                     )
                 )
             }
@@ -134,7 +134,7 @@ fun SignUpScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 onClick = {
-                    viewModel?.signUpUser(name, email, password)
+                    viewModel.signUpUser(name, email, password)
                 }
             ) {
                 Text(text = "Create an account", style = MaterialTheme.typography.button)
@@ -171,14 +171,14 @@ fun SignUpScreen(
             }
         }
 
-        authResource?.value?.let {
+        authResource.value?.let {
             when (it) {
                 is Resource.Failure -> {
                     authError = getAuthErrorMessage(it.exception.message.toString())
                 }
                 is Resource.Loading -> {
                     Box {
-                        CircularIndeterminateProgressBar(isDisplayed = true, verticalBias = 0.4f)
+                        CircularIndeterminateProgressBar(verticalBias = 0.4f)
                     }
                 }
                 is Resource.Success -> {

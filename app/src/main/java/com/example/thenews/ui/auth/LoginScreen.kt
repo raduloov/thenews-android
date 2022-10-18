@@ -109,7 +109,7 @@ fun LoginScreen(
                         imeAction = ImeAction.Done
                     ),
                     keyboardActions = KeyboardActions(
-                        onDone = { viewModel?.loginUser(email, password) }
+                        onDone = { viewModel.loginUser(email, password) }
                     )
                 )
             }
@@ -118,7 +118,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth(),
                 onClick = {
-                    viewModel?.loginUser(email, password)
+                    viewModel.loginUser(email, password)
                 }
             ) {
                 Text(text = "Log in", style = MaterialTheme.typography.button)
@@ -156,14 +156,14 @@ fun LoginScreen(
         }
     }
 
-    authResource?.value?.let {
+    authResource.value?.let {
         when (it) {
             is Resource.Failure -> {
                 authError = getAuthErrorMessage(it.exception.message.toString())
             }
             is Resource.Loading -> {
                 Box {
-                    CircularIndeterminateProgressBar(isDisplayed = true, verticalBias = 0.4f)
+                    CircularIndeterminateProgressBar(verticalBias = 0.4f)
                 }
             }
             is Resource.Success -> {

@@ -11,7 +11,7 @@ data class UserInputDto(
     var searchIn: List<String>? = null,
 
     @SerializedName("lang")
-    var lang: String? = null,
+    var lang: List<String>? = null,
 
     @SerializedName("not_lang")
     var not_lang: String? = null,
