@@ -2,8 +2,8 @@ package com.example.thenews.ui.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.thenews.data.Resource
-import com.example.thenews.data.repository.AuthRepository
+import com.example.thenews.data.authRepository.Resource
+import com.example.thenews.data.authRepository.AuthRepository
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

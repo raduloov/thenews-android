@@ -1,4 +1,4 @@
-package com.example.thenews.data
+package com.example.thenews.data.authRepository
 
 import java.lang.Exception
 

@@ -1,4 +1,4 @@
-package com.example.thenews.data.utils
+package com.example.thenews.data.authRepository.utils
 
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.ExperimentalCoroutinesApi

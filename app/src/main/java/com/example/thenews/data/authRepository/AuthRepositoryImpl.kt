@@ -1,9 +1,6 @@
-package com.example.thenews.data.repository
+package com.example.thenews.data.authRepository
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import com.example.thenews.data.Resource
-import com.example.thenews.data.utils.await
+import com.example.thenews.data.authRepository.utils.await
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest

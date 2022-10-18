@@ -1,6 +1,5 @@
-package com.example.thenews.data.repository
+package com.example.thenews.data.authRepository
 
-import com.example.thenews.data.Resource
 import com.google.firebase.auth.FirebaseUser
 
 interface AuthRepository {

@@ -13,8 +13,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Composable
 fun BottomNavBar(navController: NavHostController) {
     val screens = listOf(
-        BottomBarScreens.Home,
-        BottomBarScreens.Settings,
+        BottomBarScreens.Feed,
+        BottomBarScreens.Discover,
         BottomBarScreens.Profile
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -37,17 +37,19 @@ fun RowScope.AddItem(
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
+    val selected = currentDestination?.hierarchy?.any {
+        it.route == screen.route
+    } == true
+
     BottomNavigationItem(
         label = { Text(text = screen.title) },
         icon = {
             Icon(
-                imageVector = screen.icon,
+                imageVector = if (selected) screen.selectedIcon else screen.unselectedIcon,
                 contentDescription = "Navigation icon"
             )
         },
-        selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } == true,
+        selected = selected,
         unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.route) {

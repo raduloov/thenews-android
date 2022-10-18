@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.thenews.data.Resource
+import com.example.thenews.data.authRepository.Resource
 import com.example.thenews.navigation.AuthScreen
 import com.example.thenews.navigation.Graph
 import com.example.thenews.ui.auth.util.getAuthErrorMessage

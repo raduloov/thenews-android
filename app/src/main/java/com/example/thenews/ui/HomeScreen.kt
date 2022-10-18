@@ -1,4 +1,4 @@
-package com.example.thenews.home
+package com.example.thenews.ui
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

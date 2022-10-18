@@ -1,17 +1,15 @@
 package com.example.thenews.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.thenews.home.HomeScreen
+import com.example.thenews.ui.HomeScreen
 import com.example.thenews.ui.ProfileScreen
-import com.example.thenews.ui.auth.AuthViewModel
 
 @Composable
 fun BottomNavGraph(
@@ -19,12 +17,12 @@ fun BottomNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreens.Home.route
+        startDestination = BottomBarScreens.Feed.route
     ) {
-        composable(route = BottomBarScreens.Home.route) {
+        composable(route = BottomBarScreens.Feed.route) {
             HomeScreen(navController)
         }
-        composable(route = BottomBarScreens.Settings.route) {
+        composable(route = BottomBarScreens.Discover.route) {
             HomeScreen(navController)
         }
         composable(route = BottomBarScreens.Profile.route) {
@@ -36,23 +34,27 @@ fun BottomNavGraph(
 sealed class BottomBarScreens(
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector
 ) {
-    object Home: BottomBarScreens(
-        route = "home",
-        title = "Home",
-        icon = Icons.Default.Home
+    object Feed: BottomBarScreens(
+        route = "feed",
+        title = "Feed",
+        selectedIcon = Icons.Filled.Feed,
+        unselectedIcon = Icons.Outlined.Feed
+    )
+
+    object Discover: BottomBarScreens(
+        route = "discover",
+        title = "Discover",
+        selectedIcon = Icons.Filled.Explore,
+        unselectedIcon = Icons.Outlined.Explore
     )
 
     object Profile: BottomBarScreens(
         route = "profile",
         title = "Profile",
-        icon = Icons.Default.Person
-    )
-
-    object Settings: BottomBarScreens(
-        route = "settings",
-        title = "Settings",
-        icon = Icons.Default.Settings
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Outlined.Person
     )
 }

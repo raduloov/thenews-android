@@ -2,8 +2,8 @@ package com.example.thenews.di
 
 import android.content.Context
 import com.example.thenews.BaseApplication
-import com.example.thenews.data.repository.AuthRepository
-import com.example.thenews.data.repository.AuthRepositoryImpl
+import com.example.thenews.data.authRepository.AuthRepository
+import com.example.thenews.data.authRepository.AuthRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
