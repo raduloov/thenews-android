@@ -1,4 +1,4 @@
-[WORK IN PROGRESS]
+[WORK IN PROGRESS]\n
 My first native Android app using Kotlin and Jetpack Compose.
 
-A dummy news application powered by [NewsCatcher API|https://newscatcherapi.com/]
+A dummy news application powered by [NewsCatcher API](https://newscatcherapi.com/)
