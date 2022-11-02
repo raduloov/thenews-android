@@ -33,7 +33,7 @@ fun ArticleCard(
         elevation = 8.dp
     ) {
         Column {
-            article.media?.let { url ->
+            article.urlToImage?.let { url ->
                 val image = loadPicture(url = url, defaultImage = DEFAULT_ARTICLE_PLACEHOLDER).value
                 image?.let { img ->
                     Image(
@@ -60,16 +60,16 @@ fun ArticleCard(
                         ,
                         style = MaterialTheme.typography.h3
                     )
-                    val rank = article.rank.toString()
-                    Text(
-                        text = rank,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(Alignment.End)
-                            .align(Alignment.CenterVertically)
-                        ,
-                        style = MaterialTheme.typography.h5
-                    )
+//                    val rank = article.rank.toString()
+//                    Text(
+//                        text = rank,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .wrapContentWidth(Alignment.End)
+//                            .align(Alignment.CenterVertically)
+//                        ,
+//                        style = MaterialTheme.typography.h5
+//                    )
                 }
             }
         }

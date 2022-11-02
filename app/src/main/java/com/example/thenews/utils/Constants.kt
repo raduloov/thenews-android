@@ -1,7 +1,7 @@
 package com.example.thenews.utils
 
 const val TAG = "AppDebug"
-const val API_KEY = "f_TDO8lO7PMMIxT3hNmMYrgLHjUfGKRZp_MO94Zemug"
-const val BASE_URL = "https://api.newscatcherapi.com/v2/"
-const val SEARCH_NEWS = "search?"
-const val LATEST_NEWS = "latest_headlines?"
+const val API_KEY = "7ce1ef8750994370aeff051e5cddb356"
+const val BASE_URL = "https://newsapi.org/v2/"
+//const val SEARCH_NEWS = "search?"
+const val TOP_HEADLINES = "top-headlines"

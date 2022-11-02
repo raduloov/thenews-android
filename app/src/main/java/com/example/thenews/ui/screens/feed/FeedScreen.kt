@@ -1,6 +1,5 @@
 package com.example.thenews.ui.screens.feed
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text

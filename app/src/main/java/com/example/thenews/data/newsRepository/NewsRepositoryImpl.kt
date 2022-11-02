@@ -17,12 +17,12 @@ class NewsRepositoryImpl(
         return mapper.toDomainList(newsService.search(token, page, query).articles)
     }
 
-    override suspend fun getLatestHeadlines(
+    override suspend fun getTopHeadlines(
         token: String,
+        country: String,
         page: Int,
-        language: String,
 //        topic: String
     ): List<Article> {
-        return mapper.toDomainList(newsService.getLatestHeadlines(token, language, page).articles)
+        return mapper.toDomainList(newsService.getTopHeadlines(token, country, page).articles)
     }
 }

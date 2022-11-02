@@ -60,12 +60,13 @@ class FeedViewModel @Inject constructor(
         delay(2000)
 //        resetSearchState()
 
-        val result = repository.getLatestHeadlines(
+        val result = repository.getTopHeadlines(
             token = token,
+            country = "us",
             page = 1,
-            language = "en",
 //            topic = "all"
         )
+        Log.d(TAG, "result: $result")
         articles.value = result
 
         loading.value = false

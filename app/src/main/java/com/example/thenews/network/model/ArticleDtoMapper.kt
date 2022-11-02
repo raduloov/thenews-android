@@ -1,6 +1,7 @@
 package com.example.thenews.network.model
 
 import com.example.thenews.domain.model.Article
+import com.example.thenews.domain.model.Source
 import com.example.thenews.domain.util.DomainMapper
 
 class ArticleDtoMapper : DomainMapper<ArticleDto, Article> {
@@ -8,50 +9,34 @@ class ArticleDtoMapper : DomainMapper<ArticleDto, Article> {
     // Get
     override fun mapToDomainModel(model: ArticleDto): Article {
         return Article(
-            id = model.id,
-            title = model.title,
+            source = Source(
+                id = model.source?.id,
+                name = model.source?.name
+            ),
             author = model.author,
-            publishedDate = model.publishedDate,
-            publishedDatePrecision = model.publishedDatePrecision,
-            link = model.link,
-            cleanUrl = model.cleanUrl,
-            excerpt = model.excerpt,
-            summary = model.summary,
-            rights = model.rights,
-            rank = model.rank,
-            topic = model.topic,
-            country = model.country,
-            language = model.language,
-            authors = model.authors,
-            media = model.media,
-            isOpinion = model.isOpinion,
-            twitterAccount = model.twitterAccount,
-            _score = model._score
+            title = model.title,
+            description = model.description,
+            url = model.url,
+            urlToImage = model.urlToImage,
+            publishedAt = model.publishedAt,
+            content = model.content
         )
     }
 
     // Post
     override fun mapFromDomainModel(domainModel: Article): ArticleDto {
         return ArticleDto(
-            id = domainModel.id,
-            title = domainModel.title,
+            source = SourceDto(
+                id = domainModel.source?.id,
+                name = domainModel.source?.name
+            ),
             author = domainModel.author,
-            publishedDate = domainModel.publishedDate,
-            publishedDatePrecision = domainModel.publishedDatePrecision,
-            link = domainModel.link,
-            cleanUrl = domainModel.cleanUrl,
-            excerpt = domainModel.excerpt,
-            summary = domainModel.summary,
-            rights = domainModel.rights,
-            rank = domainModel.rank,
-            topic = domainModel.topic,
-            country = domainModel.country,
-            language = domainModel.language,
-            authors = domainModel.authors,
-            media = domainModel.media,
-            isOpinion = domainModel.isOpinion,
-            twitterAccount = domainModel.twitterAccount,
-            _score = domainModel._score
+            title = domainModel.title,
+            description = domainModel.description,
+            url = domainModel.url,
+            urlToImage = domainModel.urlToImage,
+            publishedAt = domainModel.publishedAt,
+            content = domainModel.content
         )
     }
 
